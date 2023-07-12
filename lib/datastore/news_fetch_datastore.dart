@@ -11,7 +11,7 @@ class NewsFetchDataStore implements NewsFetchDataStoreInterface {
 
   @override
   Future<NewsFetchResponseModels> fetchNewsData() async {
-    const url = 'https://newsapi.org/v2/top-headlines?country=jp&apiKey=5bd16c7d09674b0db4411cb280fe3030';
+    const url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=5bd16c7d09674b0db4411cb280fe3030';
 
     try {
       final response = await dio.get(url);
@@ -23,11 +23,12 @@ class NewsFetchDataStore implements NewsFetchDataStoreInterface {
         final model = NewsFetchResponseModel.fromData(data);
         models.datas.add(model);
       });
+      debugPrint('model:${models.datas[0].title}');
 
       return models;
-    } on Exception catch(parentException) {
+    } on Exception catch(exception) {
       debugPrint('Fail fetchNewsData.');
-      throw NewsApiException(parentException);
+      throw NewsApiException(exception.toString());
     } finally {
       debugPrint('End fetchNewsData from datastore.');
     }

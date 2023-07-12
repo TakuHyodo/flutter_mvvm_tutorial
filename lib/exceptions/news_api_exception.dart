@@ -1,9 +1,7 @@
 class NewsApiException implements Exception {
-  NewsApiException(this.parentException);
+  final String message;
+  const NewsApiException(this.message);
 
-  dynamic parentException;
-
-  String get message {
-    return 'An error has occurred';
-  }
+  @override
+  String toString() => message;
 }

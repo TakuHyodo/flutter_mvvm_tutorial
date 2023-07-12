@@ -13,7 +13,7 @@ class NewsViewModel {
     try {
       final data = await repository.fetchNewsData();
       _news = data;
-    } on Exception {
+    } on Exception catch(exception) {
       rethrow;
     } finally {
       debugPrint('End fetchNewsData from view_model.');
